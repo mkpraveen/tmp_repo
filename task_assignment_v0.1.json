@@ -1,0 +1,376 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "OpenAPI definition",
+        "version": "v0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080",
+            "description": "Generated server url"
+        }
+    ],
+    "paths": {
+        "/api/user": {
+            "post": {
+                "tags": [
+                    "task-assignment-controller"
+                ],
+                "operationId": "createUser",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GeminiUser"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GeminiUser"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/team": {
+            "post": {
+                "tags": [
+                    "task-assignment-controller"
+                ],
+                "operationId": "createTeam",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GeminiTeam"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GeminiTeam"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/task": {
+            "post": {
+                "tags": [
+                    "task-assignment-controller"
+                ],
+                "operationId": "createTask",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GeminiTask"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GeminiTask"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/declaration": {
+            "post": {
+                "tags": [
+                    "task-assignment-controller"
+                ],
+                "operationId": "createDeclaration",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/GeminiDeclaration"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GeminiDeclaration"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/assign-user-to-team": {
+            "post": {
+                "tags": [
+                    "task-assignment-controller"
+                ],
+                "operationId": "userAssignment",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserAssignmentRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/assign-team-to-declaration": {
+            "post": {
+                "tags": [
+                    "task-assignment-controller"
+                ],
+                "operationId": "teamAssignment",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TeamAssignmentRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/assign-task-to-declaration": {
+            "post": {
+                "tags": [
+                    "task-assignment-controller"
+                ],
+                "operationId": "taskAssignment",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TaskAssignmentRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "GeminiUser": {
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "fedexId": {
+                        "type": "string"
+                    },
+                    "userName": {
+                        "type": "string"
+                    },
+                    "imageRole": {
+                        "type": "string"
+                    },
+                    "teamName": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "GeminiTeam": {
+                "type": "object",
+                "properties": {
+                    "teamId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "teamName": {
+                        "type": "string"
+                    },
+                    "teamDescription": {
+                        "type": "string"
+                    },
+                    "teamRuleJson": {
+                        "type": "string"
+                    }
+                }
+            },
+            "GeminiTask": {
+                "type": "object",
+                "properties": {
+                    "clearanceTaskId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "taskType": {
+                        "type": "string"
+                    },
+                    "taskCategory": {
+                        "type": "string"
+                    },
+                    "taskStatus": {
+                        "type": "string"
+                    }
+                }
+            },
+            "GeminiDeclaration": {
+                "type": "object",
+                "properties": {
+                    "declarationId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "declarationIdentifier": {
+                        "type": "string"
+                    },
+                    "declarationType": {
+                        "type": "string"
+                    },
+                    "shipmentTag": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "clearanceScheme": {
+                        "type": "string"
+                    },
+                    "clearanceType": {
+                        "type": "string"
+                    },
+                    "shipmentIdentifier": {
+                        "type": "string"
+                    }
+                }
+            },
+            "UserAssignmentRequest": {
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "operationCd": {
+                        "type": "string"
+                    },
+                    "teamIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                }
+            },
+            "TeamAssignmentRequest": {
+                "type": "object",
+                "properties": {
+                    "declarationId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "operationCd": {
+                        "type": "string"
+                    },
+                    "teamIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                }
+            },
+            "TaskAssignmentRequest": {
+                "type": "object",
+                "properties": {
+                    "declarationId": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "operationCd": {
+                        "type": "string"
+                    },
+                    "taskIds": {
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
